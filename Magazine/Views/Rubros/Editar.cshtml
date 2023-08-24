@@ -1,0 +1,22 @@
+﻿@model Rubros
+
+@{
+    ViewData["Title"] = "Editar Rubros";
+}
+<h1>Editar Rubros</h1>
+<div asp-validation-summary="ModelOnly"></div>
+<form asp-controller="Rubros" asp-action="Editar">
+    <input type="hidden" asp-for="Id" />
+    <div class="mb-3">
+        <label asp-for="Rubro" class="form-label"></label>
+        <input type="text" class="form-control" asp-for="Rubro" />
+        <span asp-validation-for="Rubro" class="text-danger"></span>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Enviar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

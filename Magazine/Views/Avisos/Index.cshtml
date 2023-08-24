@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Avisos>
+
+@{
+    ViewData["Title"] = "Avisos";
+}
+<h1>Avisos</h1>
+<a asp-action="Crear" class="btn btn-primary mb-3">Agregar</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Acciones</th>
+            <th>Cliente</th>
+            <th>Categoria</th>
+            <th>Ultima Actualizacion</th>
+            <th>Vencimiento</th>
+            <th>Fecha de Baja</th>
+        </tr>
+    </thead>
+    <tbody id="reordenable">
+        @foreach (var aviso in Model)
+        {
+            <tr>
+                <td>
+                    <input type="hidden" value="@aviso.Id" class="ids">
+                    <a class="btn btn-primary" asp-action="Editar" asp-route-id="@aviso.Id">Editar</a>
+                    <a class="btn btn-danger" asp-action="Borrar" asp-route-id="@aviso.Id">Borrar</a>
+                </td>
+                <td>@aviso.NombreCliente</td>
+                <td>@aviso.NombreCategoria</td>
+                <td>@aviso.FechaActualizacion</td>
+                <td>@aviso.FechaVencimiento</td>
+                <td>@aviso.FechaBaja</td>
+                
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,100 @@
+﻿@model SucursalCreacionViewModel
+@{
+    ViewData["Title"] = "Alta de Sucursales";
+}
+<h1>Alta de Sucursales</h1>
+<h5>Cada Cliente puede terner una o mas sucursales. Una sucursal agrupa la información del domicilio y contacto del cliente.</h5>
+<form asp-action="Crear" asp-controller="Sucursal">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="mb-3">
+        <label asp-for="Cliente" class="form-label"></label>
+        <select asp-for="Cliente" asp-items="Model.Clientes" class="form-select"></select>
+        <span asp-validation-for="Cliente" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="NombreSucursal" class="form-label"></label>
+        <input type="text" class="form-control" asp-for="NombreSucursal" placeholder="Campo Obligatorio" required />
+        <span asp-validation-for="NombreSucursal" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <input type="checkbox" class="form-check-input" checked asp-for="EsSucursalCentral" />
+        <label asp-for="EsSucursalCentral" class="form-label"></label>
+        <span asp-validation-for="EsSucursalCentral" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Calle" class="form-label"></label>
+        <input type="text" class="form-control" asp-for="Calle" />
+        <span asp-validation-for="Calle" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Nro" class="form-label"></label>
+        <input type="text" class="form-control" asp-for="Nro" />
+        <span asp-validation-for="Nro" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Piso" class="form-label"></label>
+        <input type="text" class="form-control" asp-for="Piso" />
+        <span asp-validation-for="Piso" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Departamento" class="form-label"></label>
+        <input type="text" class="form-control" asp-for="Departamento" />
+        <span asp-validation-for="Departamento" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="InformacionAdicional" class="form-label"></label>
+        <input type="text" class="form-control" asp-for="InformacionAdicional" />
+        <span asp-validation-for="InformacionAdicional" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Telefono" class="form-label"></label>
+        <input type="text" class="form-control" asp-for="Telefono" />
+        <span asp-validation-for="Telefono" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Whatsapp" class="form-label"></label>
+        <input type="text" class="form-control" asp-for="Whatsapp" />
+        <span asp-validation-for="Whatsapp" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Provincia" class="form-label"></label>
+        <select asp-for="Provincia" asp-items="Model.Provincias" class="form-select"></select>
+        <span asp-validation-for="Provincia" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Localidad" class="form-label"></label>
+        <select asp-for="Localidad" asp-items="Model.Localidades" class="form-select"></select>
+        <span asp-validation-for="Localidad" class="text-danger"></span>
+    </div>
+
+    
+    <button class="btn btn-primary" type="submit">Enviar</button>
+    <a asp-action="Index" asp-controller="Sucursal" asp-route-id="@Model.Cliente" class=" btn btn-secondary">Cancelar</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+    const URLObtenerLocalidades = '@Url.Action("ObtenerLocalidadespost")';
+
+    $(function(){
+        $("#Provincia").change(async function(){
+            const valorSeleccionado = $(this).val();
+
+                const respuesta = await fetch(URLObtenerLocalidades, {
+                method:'POST',
+                body: valorSeleccionado,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const json = await respuesta.json();
+            //console.log(json);
+            const opciones= json.map(localidad => `<option value=${localidad.value}>${localidad.text}</option>`);
+            $("#Localidad").html(opciones);
+        })
+    })
+  </script>
+
+}

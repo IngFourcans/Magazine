@@ -1,0 +1,73 @@
+﻿@model Clientes
+
+@{
+    ViewData["Title"] = "Editar Cliente";
+}
+<h1>Editar Cliente: @Model.Empresa</h1>
+<div asp-validation-summary="ModelOnly"></div>
+<form asp-controller="Clientes" asp-action="Editar">
+    <input type="hidden" asp-for="Id" />
+    <div class="mb-3">
+        <label asp-for="Empresa" class="form-label"></label>
+        <input type="text" class="form-control" asp-for="Empresa" placeholder="Campo Obligatorio" required />
+        <span asp-validation-for="Empresa" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input type="email" class="form-control" asp-for="Email" placeholder="Campo Obligatorio" required />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Web" class="form-label"></label>
+        <input type="text" class="form-control" asp-for="Web" />
+        <span asp-validation-for="Web" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Instagram" class="form-label"></label>
+        <input type="text" class="form-control" asp-for="Instagram" />
+        <span asp-validation-for="Instagram" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Facebook" class="form-label"></label>
+        <input type="text" class="form-control" asp-for="Facebook" />
+        <span asp-validation-for="Facebook" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Twitter" class="form-label"></label>
+        <input type="text" class="form-control" asp-for="Twitter" />
+        <span asp-validation-for="Twitter" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="CUIT" class="form-label"></label>
+        <input type="text" class="form-control" asp-for="CUIT" placeholder="21-06741235-5" data-inputmask="'mask': '99-99999999-9'" data-val="true" data-val-regex="El formato del CUIT es inválido." data-val-regex-pattern="^\d{2}-\d{8}-\d{1}$" />
+        <span asp-validation-for="CUIT" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="RazonSocial" class="form-label"></label>
+        <input type="text" class="form-control" asp-for="RazonSocial" />
+        <span asp-validation-for="RazonSocial" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="DomicilioLegal" class="form-label"></label>
+        <input type="text" class="form-control" asp-for="DomicilioLegal" />
+        <span asp-validation-for="DomicilioLegal" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="ReferenteNombre" class="form-label"></label>
+        <input type="text" class="form-control" asp-for="ReferenteNombre" placeholder="Campo Obligatorio" required />
+        <span asp-validation-for="ReferenteNombre" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="CelularReferente" class="form-label"></label>
+        <input type="text" class="form-control" asp-for="CelularReferente" placeholder="Campo Obligatorio" required data-inputmask="'mask': '9999999999'" data-val="true" data-val-regex="El formato del número de celular es inválido." data-val-regex-pattern="^\d{10}$" />
+        <span asp-validation-for="CelularReferente" class="text-danger"></span>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Enviar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Clientes>;
+@{
+    ViewData["Title"] = "Clientes";
+}
+<h1>Clientes</h1>
+<a asp-action="Crear" class="btn btn-primary mb-3">Agregar</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Acciones</th>
+            <th>Empresa</th>
+            <th>E-mail</th>
+            <th>Referente</th>
+            <th>Celular Referente</th>
+            
+        </tr>
+    </thead>
+    <tbody id="reordenable">
+        @foreach (var cliente in Model)
+        {
+            <tr>
+                <td>
+                    <input type="hidden" value="@cliente.Id" class="ids">
+                    <a class="btn btn-link" title="Editar Cliente" asp-action="Editar" asp-route-id="@cliente.Id"><i class="bi bi-pencil-square"></i></a>
+                    <a class="btn btn-link" title="Ver Surcursales" asp-controller="Sucursal" asp-action="Index" asp-route-id="@cliente.Id"><i class="bi bi-houses-fill"></i></a>
+                    @if (cliente.aviso < 0)
+                    {
+                        <a class="btn btn-link" title="Crear Aviso" asp-controller="Avisos" asp-action="CrearxCliente" asp-route-id="@cliente.Id"><i class="bi bi-card-heading"></i></a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-link" title="Editar Aviso" asp-controller="Avisos" asp-action="Editar" asp-route-id="@cliente.aviso"><i class="bi bi-card-heading"></i></a>
+                    }
+                    <a class="btn btn-link" title="Rubros Vinculados" asp-controller="Clientes" asp-action="RubrosAsignados" asp-route-id="@cliente.Id"><i class="bi bi-r-square"></i></a>
+                    <a class="btn btn-link" title="Borrar Cliente" asp-action="Borrar" asp-route-id="@cliente.Id"><i class="bi bi-trash-fill"></i></a>
+
+                </td>
+                <td>@cliente.Empresa</td>
+                <td>@cliente.Email</td>
+                <td>@cliente.ReferenteNombre</td>
+                <td>@cliente.CelularReferente</td>
+                
+
+            </tr>
+        }
+    </tbody>
+</table>
+

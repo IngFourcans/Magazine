@@ -1,0 +1,29 @@
+﻿
+.Contenedor-Totales {
+    display: flex;
+    justify-content: space-around;
+    font-size: 26px;
+    text-align: center;
+}
+
+.Total-Avisos {
+    color: blue;
+}
+
+.acordeon-avisos {
+    color: black !important;
+    font-size: 20px;
+}
+
+    .acordeon-avisos button > span {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .acordeon-avisos ul li {
+        display: flex;
+        justify-content: space-between;
+        font-size: 18px;
+    }
+

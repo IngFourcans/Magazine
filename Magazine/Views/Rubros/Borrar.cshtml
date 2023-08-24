@@ -1,0 +1,12 @@
+﻿@model Rubros
+
+@{
+    ViewData["Title"] = "Eliminar Rubro";
+}
+
+<h1>Esta seguro de eliminar el rubro @Model.Rubro</h1>
+<form asp-action="Eliminar" asp-controller="Rubros">
+    <input type="hidden" asp-for="Id" />
+    <button class="btn btn-primary" type="submit" >Eliminar</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+</form>

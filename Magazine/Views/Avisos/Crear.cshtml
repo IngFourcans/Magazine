@@ -1,0 +1,59 @@
+﻿@model AvisosDTO;
+
+@{
+    ViewData["Title"] = "Crear Avisos";
+}
+
+
+<h1>Crear Aviso</h1>
+<h5>Al crear un aviso se define como se mostraran los datos del cliente en la Guia y por cuanto tiempo</h5>
+<form asp-action="Crear" asp-controller="Avisos">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="mb-3">
+        <label asp-for="Cliente" class="form-label"></label>
+        <select asp-for="Cliente" asp-items="Model.Clientes" class="form-select" ></select>
+        <span asp-validation-for="Cliente" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Categoria" class="form-label"></label>
+        <select asp-for="Categoria" asp-items="Model.Categorias" class="form-select"></select>
+        <span asp-validation-for="Categoria" class="text-danger"></span>
+    </div>
+    
+    <div class="mb-3">
+        <label asp-for="RutaImagen" class="form-label"></label>
+        <input type="file" class="form-control" asp-for="RutaImagen" />
+        <span asp-validation-for="RutaImagen" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="FechaActualizacion" class="form-label"></label>
+        <input type="date" class="form-control" asp-for="FechaActualizacion" readonly />
+        <span asp-validation-for="FechaActualizacion" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="FechaVencimiento" class="form-label"></label>
+        <input type="date" class="form-control" asp-for="FechaVencimiento"  min="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" />
+        <span asp-validation-for="FechaVencimiento" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="FechaBaja" class="form-label"></label>
+        <input type="date" class="form-control" asp-for="FechaBaja" min="@DateTime.Now.ToString("yyyy-MM-dd")" />
+        <span asp-validation-for="FechaBaja" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="TituloSEO" class="form-label"></label>
+        <input type="text" class="form-control" asp-for="TituloSEO" />
+        <span asp-validation-for="TituloSEO" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="DescripcionSEO" class="form-label"></label>
+        <input type="text" class="form-control" asp-for="DescripcionSEO" />
+        <span asp-validation-for="DescripcionSEO" class="text-danger"></span>
+    </div>
+    <button class="btn btn-primary" type="submit">Enviar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

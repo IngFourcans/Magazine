@@ -1,0 +1,8 @@
+﻿#reordenable tr {
+    cursor: move;
+}
+.readonly-select {
+    background-color: #f5f5f5;
+    color: #888888;
+    /* Otros estilos */
+}

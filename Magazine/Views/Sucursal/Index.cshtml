@@ -1,0 +1,41 @@
+﻿@model IEnumerable<SucursalIndexViewModel>
+
+@{
+    ViewData["Title"] = "Gestion de Sucursales";
+}
+
+@foreach (var cliente in Model)
+ {
+    <h1>Gestion de Sucursales del Cliente: @cliente.ClienteNombre</h1>
+
+    <a asp-action="Crear" class="btn btn-primary mb-3" >Agregar</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Acciones</th>
+            <th>Nombre Sucursal</th>
+            <th>Provincia</th>
+            <th>Localidad</th>
+            <th>Domicilio</th>
+            <th>Telefono</th>
+        </tr>
+    </thead>
+    <tbody id="reordenable">
+    @foreach (var sucursal in cliente.SucursalesxCliente)
+            {
+                <tr>
+                    <th>
+                        <a class="btn btn-link" title="Editar Sucursal" asp-action="Editar" asp-route-id="@sucursal.Id"><i class="bi bi-pencil-square"></i></a>
+                        <a class="btn btn-link" title="Borrar Sucursal" asp-action="Borrar" asp-route-id="@sucursal.Id"><i class="bi bi-trash-fill"></i></a>
+                    </th>
+                    <th>@sucursal.NombreSucursal</th>
+                    <th>@sucursal.ProvinciaNombre</th>
+                    <th>@sucursal.LocalidadNombre</th>
+                    <th>@sucursal.Calle @sucursal.Nro ...</th>
+                    <th>@sucursal.Telefono</th>
+                </tr>
+            }
+        </tbody>
+</table>
+}

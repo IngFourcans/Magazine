@@ -1,0 +1,11 @@
+﻿@model Sucursal
+@{
+    ViewData["Title"] = "Eliminar Sucursal";
+}
+
+<h3 class="mb-3">Esta seguro de eliminar la sucursal @Model.NombreSucursal</h3>
+<form asp-action="BorrarSucursal" asp-controller="Sucursal">
+    <input type="hidden" asp-for="Id" />
+    <button class="btn btn-danger" type="submit">Eliminar</button>
+    <a asp-action="Index" asp-controller="Sucursal" asp-route-id="@Model.Cliente" class=" btn btn-secondary">Cancelar</a>
+</form>

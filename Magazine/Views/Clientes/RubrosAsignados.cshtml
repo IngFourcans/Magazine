@@ -1,0 +1,43 @@
+﻿@model ClientesRubrosAsignacionViewModel
+
+@{
+    ViewData["Title"] = "Rubros Asignados al cliente";
+}
+<h1>Asignacion de rubros del Cliente: @Model.Empresa</h1>
+<form asp-action="RubrosAsignados" asp-controller="Clientes">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="Empresa" />
+
+    <div class="mb-3">
+        
+        <label  class="form-label"></label> 
+        <select id="RubrosSeleccionados" name="RubrosSeleccionados[]"   multiple class="js-example-basic-multiple" style="width: 80%">
+            @foreach (var rubro in Model.Rubros )
+            {
+               <option value="@rubro.Id" selected="@rubro.seleccionado" >@rubro.Rubro </option> 
+            }
+        </select>
+        
+    </div>
+
+    <button class="btn btn-primary" type="submit" asp-controller="Clientes">Enviar</button>
+    <a asp-action="Index" asp-controller="Clientes" class=" btn btn-secondary">Cancelar</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        
+       
+        $(document).ready(function () {
+            $('.js-example-basic-multiple').select2({
+                ancho: 'resolver',
+                language: "es",
+                
+                minimumInputLength: 2
+            });
+        });
+    </script>
+
+}
