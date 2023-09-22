@@ -1,6 +1,6 @@
 ﻿using Magazine.Models;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Data.SqlClient;
+using MySql.Data.MySqlClient;
 
 namespace Magazine.Servicios
 {

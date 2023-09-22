@@ -1,7 +1,6 @@
 ﻿using Dapper;
 using Magazine.Models;
-using Microsoft.Data.SqlClient;
-
+using MySql.Data.MySqlClient;
 namespace Magazine.Servicios
 {
 
@@ -19,7 +18,7 @@ namespace Magazine.Servicios
 
         public async Task<IEnumerable<Provincias>> Listar ()
         {
-            using var connection = new SqlConnection(connectionstring);
+            using var connection = new MySqlConnection(connectionstring);
             return await connection.QueryAsync<Provincias>(@"SELECT Id, Provincia FROM Provincias 
                                                             ORDER BY Provincia");
 

@@ -1,9 +1,11 @@
-﻿using Magazine.Models;
+﻿using Dapper;
+using Magazine.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Abstractions;
+using MySql.Data.MySqlClient;
 using System.Reflection;
 
 namespace Magazine.Controllers
@@ -13,13 +15,17 @@ namespace Magazine.Controllers
     {
         private readonly UserManager<Usuarios> userManager;
         private readonly SignInManager<Usuarios> signInManager;
-
+       
         public UsuariosController(UserManager<Usuarios> userManager,SignInManager<Usuarios> signInManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            
         }
 
+        
+
+       
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Registro() 
@@ -72,6 +78,7 @@ namespace Magazine.Controllers
         [AllowAnonymous]
         public IActionResult Login()
         {
+
             return View();
         }
         [HttpPost]

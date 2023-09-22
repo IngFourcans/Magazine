@@ -1,6 +1,6 @@
 ﻿using Dapper;
 using Magazine.Models;
-using Microsoft.Data.SqlClient;
+using MySql.Data.MySqlClient;
 
 namespace Magazine.Servicios
 {
@@ -19,7 +19,7 @@ namespace Magazine.Servicios
         }
         public async Task<IEnumerable<Categorias>> Listar()
         {
-            using var connection = new SqlConnection(connectionString);
+            using var connection = new MySqlConnection(connectionString);
             return await connection.QueryAsync<Categorias>(@"SELECT Id,Categoria FROM Categorias");
 
 
