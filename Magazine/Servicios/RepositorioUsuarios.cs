@@ -27,7 +27,7 @@ namespace Magazine.Servicios
             using var connection = new MySqlConnection(connectionString);
             var id = await connection.QuerySingleAsync<int>(@"INSERT INTO Usuarios (Nombre, Usuario, TipoUsuario,
                                                     Email, EmailNormalizado, PasswordHash, EmailConfirmado)
-                                                    VALUES (@Email, @Email, 3,
+                                                    VALUES (@Email, @Email, 1,
                                                     @Email, @EmailNormalizado, @PasswordHash, 1);
                                                     SELECT LAST_INSERT_ID();", usuarios);
             return id;
